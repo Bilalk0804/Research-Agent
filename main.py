@@ -5,7 +5,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 from langchain.chat_models import init_chat_model
 from langchain.agents import create_tool_calling_agent,AgentExecutor
 from pydantic import BaseModel
-
+from tools import search_tool,wiki_tool
 load_dotenv()
 llm = init_chat_model("mistralai/mixtral-8x7b-instruct-v0.1", model_provider="Nvidia", api_key=os.getenv("NVIDIA_API_KEY"))
 # prompt="Tell me how is an agent diffrent from a tool in the context of LLMs"
@@ -32,12 +32,16 @@ prompt = ChatPromptTemplate.from_messages(
     ("human", "{query}"),
     ("placeholder", "{agent_scratchpad}")
     ]).partial(format_instructions=parcer.get_format_instructions())
-
+tools=[search_tool,wiki_tool]
 agent= create_tool_calling_agent(
     llm=llm,
     prompt=prompt,
-    tools=[]
+    tools=tools
 )
-agent_executor = AgentExecutor(agent=agent, tools=[], verbose=True)
-raw_response = agent_executor.invoke({"query": "Chilli plant leaves?"})
-print(raw_response)
+query=input("How can I help you research?")
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+raw_response = agent_executor.invoke({"query":query})
+#print(raw_response)
+#rint(raw_response['output'])
+structured_response = parcer.parse(raw_response['output'])
+print(structured_response)
