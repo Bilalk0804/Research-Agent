@@ -4,10 +4,14 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.chat_models import init_chat_model
 from langchain.agents import create_tool_calling_agent,AgentExecutor
+from langchain.chat_models import ChatHuggingFace
+from langchain.llms import HuggingFaceHub
+from langchain.chat_models import ChatOpenAI
 from pydantic import BaseModel
 from tools import search_tool,wiki_tool, save_tool
 load_dotenv()
 llm = init_chat_model("mistralai/mixtral-8x7b-instruct-v0.1", model_provider="Nvidia", api_key=os.getenv("NVIDIA_API_KEY"))
+
 # prompt="Tell me how is an agent diffrent from a tool in the context of LLMs"
 # response = llm.invoke(prompt)
 # for chunk in llm.stream(prompt):
