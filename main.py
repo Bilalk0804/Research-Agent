@@ -4,15 +4,20 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.chat_models import init_chat_model
 from langchain.agents import create_tool_calling_agent,AgentExecutor
-from langchain.chat_models import ChatHuggingFace
-from langchain.llms import HuggingFaceHub
-from langchain.chat_models import ChatOpenAI
+#from langchain_huggingface import HuggingFaceEndpoint
 from pydantic import BaseModel
 from tools import search_tool,wiki_tool, save_tool
 load_dotenv()
 llm = init_chat_model("mistralai/mixtral-8x7b-instruct-v0.1", model_provider="Nvidia", api_key=os.getenv("NVIDIA_API_KEY"))
 
-# prompt="Tell me how is an agent diffrent from a tool in the context of LLMs"
+'''Experimental code to use HuggingFaceEndpoint, currently not working due to custom tooling.'''
+# llm = HuggingFaceEndpoint(
+#     #repo_id="HuggingFaceH4/zephyr-7b-beta",
+#     temperature=0.5,
+#     huggingfacehub_api_token=os.getenv("HUGGINGFACE_API_KEY"),
+#     model='HuggingFaceH4/zephyr-7b-beta')
+'''Test run to check if the LLM is working correctly.'''
+# prompt="Tell me how is an agent different from a tool in the context of LLMs"
 # response = llm.invoke(prompt)
 # for chunk in llm.stream(prompt):
 #    print(chunk.content, end='')
@@ -34,7 +39,7 @@ prompt = ChatPromptTemplate.from_messages(
     2. List **credible sources** used, with links if available.
     3. Mention the **tools or methods** you used to find the information (e.g., Wikipedia wrapper, Google Search tool, academic search).
     4. Present all content in the following format (no extra commentary):
-
+    5. Make use of thre tools provided to you, such as search and Wikipedia, to gather information.
     {format_instructions}
 
     Avoid vague responses. If you cannot find information, state clearly which part failed and suggest next steps for research.
