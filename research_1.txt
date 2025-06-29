@@ -1,0 +1,17 @@
+--- Research Output ---
+Timestamp: 2025-06-29 15:57:56
+
+{
+  "topic": "Hammerhead Sharks",
+  "summary": "Hammerhead sharks are a group of shark species known for their unique hammer-like head shape called a 'cephalofoil'. This cephalofoil aids in their ability to find prey and navigate their environment. There are nine recognized species of hammerhead sharks, ranging in size from the small bonnethead to the great hammerhead. These sharks are found worldwide in warmer waters and are often observed in large schools. They are viviparous, giving birth to live young. Hammerhead sharks are considered apex predators and play a vital role in maintaining the balance of marine ecosystems. Some species are threatened due to overfishing and habitat loss.",
+  "sources": [
+    "Bester, C. (2021). Hammerhead Sharks. National Geographic. Retrieved from <https://www.nationalgeographic.com/animals/fish/h/hammerhead-shark/>",
+    "Fahy, E. (2021). Hammerhead Shark. Britannica. Retrieved from <https://www.britannica.com/animal/hammerhead-shark>",
+    "Florida Museum. (n.d.). Hammerhead Sharks. Retrieved from <https://www.floridamuseum.ufl.edu/discover-fish/sharks/hammerheads/>"
+  ],
+  "tools_used": [
+    "Google Search",
+    "Wikipedia"
+  ]
+}
+
